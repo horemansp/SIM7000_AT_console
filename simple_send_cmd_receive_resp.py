@@ -51,15 +51,21 @@ def write_command(data_to_send):
         SIM_start()
     else:
         if(data_to_send == "CTRL-Z"):
-            end_to_send = '\x1A'+'\r\n'
+            print("write to UART: EOF")
+            time.sleep(1) #make sure there is 1 sec of not sending anything
+            uart2.write(('\x1A'+'\r\n').encode())
+        if("<rn>" in data_to_send):
+            data_to_send = data_to_send.replace("<rn>","")
+            print("write to UART:",data_to_send, " and CR+NL")
+            time.sleep(1) #make sure there is 1 sec of not sending anything
+            uart2.write((data_to_send).encode())
+            time.sleep(1) #make sure there is 1 sec of not sending anything
+            uart2.write(('\r\n').encode())
         else:
-            end_to_send = '\r\n'
-        print("write to UART:",data_to_send)
-        time.sleep(1) #make sure there is 1 sec of not sending anything
-        uart2.write((data_to_send).encode())
-        time.sleep(1) #make sure there is 1 sec delay before end is sent. (used with +++)
-        uart2.write((end_to_send).encode())
-        time.sleep(1)
+            print("write to UART:",data_to_send)
+            time.sleep(1) #make sure there is 1 sec delay before end is sent. (used with +++)
+            uart2.write((data_to_send).encode())
+
 
 while 1:
     while uart2.any() > 0 :
