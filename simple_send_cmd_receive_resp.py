@@ -1,5 +1,5 @@
 # simple program to send AT commands for testing purposes
-# includes +++ with delays before command and after before sending \r\n
+# includes +++ with delay of 1 sec before command and 1 sec after command, before sending \r\n
 # special commands:
 #    CTRL-START will restart the module (power off/on etc) = initialisation
 #    CTRL-Z will send \x1A (EOF)
@@ -42,7 +42,7 @@ def get_input():
     global data 
     while 1:
         data = input()
-        print("data entered = :",data)
+        #print("data entered = :",data)
     
 get_input_thread = thread.start_new_thread(get_input, ())  #upython versie  lege tuple indien geen argumenten worden doorgegeven
 
@@ -55,9 +55,9 @@ def write_command(data_to_send):
         else:
             end_to_send = '\r\n'
         print("write to UART:",data_to_send)
-        time.sleep(1)
+        time.sleep(1) #make sure there is 1 sec of not sending anything
         uart2.write((data_to_send).encode())
-        time.sleep(1)
+        time.sleep(1) #make sure there is 1 sec delay before end is sent. (used with +++)
         uart2.write((end_to_send).encode())
         time.sleep(1)
 
@@ -70,7 +70,7 @@ while 1:
             print("exception in receive_from_gsm =",e)
             
     if data != "":
-        print("new data=" , data)
+        #print("new data=" , data)
         write_command(data)
         data =""
         
