@@ -1,8 +1,8 @@
 # SIM7000_console
 Code to test AT command with SIM7000 ESP module from Thonny console<br>
 uses microPython<br>
-Add '<rn>' to the end of the command if you desire to send a \r\n<br>
-Example: AT+COPS?'<rn>'<br>
+Add &#60;rn&#62; to the end of the command if you desire to send a \r\n<br>
+Example: AT+COPS?&#60;rn&#62;<br>
 Enter "CTRL-START" to restart the SIM module<br>
 Enter "CTRL-Z" to send the EOF \x1A character<br><br>
 Tested with LilyGO TTGO T-SIM7000G<br><br>
