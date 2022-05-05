@@ -53,22 +53,25 @@ def write_command(data_to_send):
         if(data_to_send == "CTRL-Z"):
             print("write to UART: EOF")
             uart2.write(('\x1A'+'\r\n').encode())
-        if("<n>" in data_to_send):
+        if("<n>" in data_to_send): #no CR LF at the end
             data_to_send = data_to_send.replace("<n>","")
             print("write to UART:",data_to_send, " without CR LF")
             uart2.write((data_to_send).encode())
+        elif ("<rn>" in data_to_send): #only CR LF
+            print("write to UART: only CR LF")
+            uart2.write(('\r\n').encode())         
         else:
             print("write to UART:",data_to_send," with CR LF")
-            time.sleep(1) #make sure there is 1 sec delay before end is sent. (used with +++)
+            time.sleep(1) 
             uart2.write((data_to_send).encode())
-            time.sleep(1) #make sure there is 1 sec of not sending anything
+            time.sleep(1) 
             uart2.write(('\r\n').encode())
 
 while 1:
     while uart2.any() > 0 :
         try:
             msg = uart2.readline().decode()
-            print("received:",msg)
+            print("received from UART:",msg)
         except Exception as e:
             print("exception in receive_from_gsm =",e)
             
