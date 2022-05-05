@@ -52,20 +52,17 @@ def write_command(data_to_send):
     else:
         if(data_to_send == "CTRL-Z"):
             print("write to UART: EOF")
-            time.sleep(1) #make sure there is 1 sec of not sending anything
             uart2.write(('\x1A'+'\r\n').encode())
-        if("<rn>" in data_to_send):
-            data_to_send = data_to_send.replace("<rn>","")
-            print("write to UART:",data_to_send, " and CR+NL")
-            time.sleep(1) #make sure there is 1 sec of not sending anything
+        if("<n>" in data_to_send):
+            data_to_send = data_to_send.replace("<n>","")
+            print("write to UART:",data_to_send, " without CR LF")
+            uart2.write((data_to_send).encode())
+        else:
+            print("write to UART:",data_to_send," with CR LF")
+            time.sleep(1) #make sure there is 1 sec delay before end is sent. (used with +++)
             uart2.write((data_to_send).encode())
             time.sleep(1) #make sure there is 1 sec of not sending anything
             uart2.write(('\r\n').encode())
-        else:
-            print("write to UART:",data_to_send)
-            time.sleep(1) #make sure there is 1 sec delay before end is sent. (used with +++)
-            uart2.write((data_to_send).encode())
-
 
 while 1:
     while uart2.any() > 0 :
