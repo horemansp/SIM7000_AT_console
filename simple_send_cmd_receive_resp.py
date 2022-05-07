@@ -73,7 +73,7 @@ while 1:
         try:
             msg = uart2.read(1).decode("utf-8")
             if msg == "\r":
-                print("<CR>")
+                print("<CR>",end="")
             elif msg == "\n":
                 print("<LF>")
             else:
