@@ -75,7 +75,7 @@ while 1:
             if msg == "\r":
                 print("<CR>")
             elif msg == "\n":
-                print("<NL>")
+                print("<LF>")
             else:
                 print(msg, end="")           
         except Exception as e:
