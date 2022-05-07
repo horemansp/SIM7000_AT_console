@@ -17,6 +17,7 @@ led_blue = Pin(12, Pin.OUT)
 
 data = ""
 msg = b''
+received_msg = ""
 send = True
 
 # TX2 op pin IO27 naar GSM-RT, RX2 op pin IO26 naar GSM-TX
@@ -58,7 +59,7 @@ def write_command(data_to_send):
             print("write to UART:",data_to_send, " without CR LF")
             uart2.write((data_to_send).encode())
         elif ("<rn>" in data_to_send): #only CR LF
-            print("write to UART: only CR LF")
+            print("write to UART: only ACR LF")
             uart2.write(('\r\n').encode())         
         else:
             print("write to UART:",data_to_send," with CR LF")
@@ -70,10 +71,16 @@ def write_command(data_to_send):
 while 1:
     while uart2.any() > 0 :
         try:
-            msg = uart2.readline().decode()
-            print("received from UART:",msg)
+            msg = uart2.read(1).decode("utf-8")
+            if msg == "\r":
+                print("<CR>")
+            elif msg == "\n":
+                print("<NL>")
+            else:
+                print(msg, end="")           
         except Exception as e:
             print("exception in receive_from_gsm =",e)
+            
             
     if data != "":
         #print("new data=" , data)
