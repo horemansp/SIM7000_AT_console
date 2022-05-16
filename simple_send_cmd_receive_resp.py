@@ -24,11 +24,6 @@ send = True
 uart2=UART(2, baudrate=115200, rx=26, tx=27, timeout=10)
 uart2.init(115200, bits=8, parity=None , stop=1)
 
-class bcolors:
-    OK = '\033[2m' #GREEN
-    WARNING = '\033[93m' #YELLOW
-    FAIL = '\033[91m' #RED
-    RESET = '\033[0m' #RESET COLOR
 
 def SIM_start():
     print("Switch SIM module off/on.. wait for 10 seconds please")
