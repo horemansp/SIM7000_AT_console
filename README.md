@@ -1,7 +1,7 @@
 # SIM7000_console
 Code to test AT commands with SIM7000 ESP32 module from Thonny console or command line<br>
 uses microPython<br><br>
-USe command ```CTRL-START``` to start/restart the SIM module<br><br>
+Enter the command ```CTRL-START``` to start/restart the SIM module<br><br>
 By default a \r (CR) character is added at the end of your command before sending<br>
 Add ```<ncr>``` to the end of the command if you desire NOT to send a \r (CR) at the end<br>
 Example: ```+++<ncr>``` to send only the + characters without CR<br><br>
