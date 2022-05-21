@@ -65,7 +65,7 @@ def write_command(data_to_send):
             uart2.write(b'\r')         
         else:
             print("write to UART:",data_to_send,"<CR> (with CR)")
-            time.sleep(1) 
+            time.sleep(1) #some command require a 1 sec delay before \r is send
             uart2.write((data_to_send + "\r").encode())
 
 
