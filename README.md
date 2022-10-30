@@ -5,7 +5,7 @@ Enter the command ```CTRL-START``` to start/restart the SIM module<br><br>
 By default a \r (CR) character is added at the end of your command before sending<br>
 Add ```<ncr>``` to the end of the command if you desire NOT to send a \r (CR) at the end<br>
 Example: ```+++<ncr>``` to send only the + characters without CR<br><br>
-Enter ```<cr>``` To only send \r (CR). All other data on line will be ignored<br>
+Enter ```<cr>``` To only send \r (CR). All other data on the line will be ignored<br>
 Enter ```<eof>``` to send the EOF \x1A character<br><br>
 
 
