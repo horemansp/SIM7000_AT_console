@@ -1,4 +1,4 @@
-# SIM7000_console
+# SIM7000_AT_console
 Code to test AT commands with SIM7000 ESP32 module from Thonny console or command line<br>
 uses microPython<br><br>
 Enter the command ```CTRL-START``` to start/restart the SIM module<br><br>
